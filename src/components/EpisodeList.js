@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import CharacterCard from './CharacterCard'
+import EpisodeCard from './EpisodeCard'
 
-export default function CharacterList() {
+export default function EpisodeList() {
   // API website values
   const apiSite = 'https://rickandmortyapi.com/api'
-  const apiCategory = 'character'
+  const apiCategory = 'episode'
 
-  const [characters, setCharacters] = useState([])
+  const [episodes, setEpisodes] = useState([])
 
   useEffect(() => {
     axios.get(`${apiSite}/${apiCategory}/`)
     .then(res => {
       console.log('Data retrieved: ', res)
-      const apiChars = res.data.results
+      const apiEpi = res.data.results
 
-      setCharacters(apiChars)
+      setEpisodes(apiEpi)
     })
 
     .catch(err => {
@@ -25,9 +25,9 @@ export default function CharacterList() {
   }, [])
 
   return (
-    <section className='character-list grid-view'>
-      {characters.map(char => (
-        <CharacterCard key={char.id} char={char}/>
+    <section className='episode-list grid-view'>
+      {episodes.map(epi => (
+        <EpisodeCard key={epi.id} epi={epi}/>
       ))}
     </section>
   )
